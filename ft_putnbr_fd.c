@@ -33,8 +33,3 @@ void	ft_putnbr_fd(int n, int fd)
 		out = n + '0';
 	write(fd, &out, 1);
 }
-/*int main()
-{
-    int fd = open("hello", 777);
-    ft_putnbr_fd(-2147483648, fd);
-}*/

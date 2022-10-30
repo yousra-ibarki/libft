@@ -23,9 +23,9 @@ size_t	ft_strlen(const char *s)
 	}
 	return (i);
 }
-/*int main()
-{
-	char arr[] = "";
-	printf("%zu", ft_strlen(0));
-	printf("%lu", strlen(0));
-}*/
+// int main()
+// {
+// 	char arr[] = "";
+// 	printf("%zu", ft_strlen(0));
+// 	printf("%lu", strlen(0));
+// }

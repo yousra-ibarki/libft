@@ -16,8 +16,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	j;
-	size_t	lend;
-	size_t	lens;
 
 	i = 0;
 	j = ft_strlen(dst);
@@ -40,11 +38,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		dst[j] = '\0';
 	return (ft_strlen(dst) + strlen(src));
 }
-/*int main()
-{
-    char dst[] = "hello";
-    char src[] = "world";
-    printf("%ld", ft_strlcat(dst, src, 3));
-    printf("%ld", strlcat(dst, src, 3));
-    return 0;
-}*/

@@ -11,53 +11,56 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-static char	*ft_strcpy(const char *src, char *dst, size_t s, size_t len)
+//, size_t s, size_t len
+static char	*ft_strcpy(const char *src, char *dst)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < len)
+	while (i < strlen(src))
 	{
-		dst[i] = src[s];
-		s++;
+		dst[i] = src[i];
 		i++;
 	}
-	dst[s] = '\0';
+	dst[i] = '\0';
 	return (dst);
 }
 
 static char	*ft_strdup(const char *s1)
 {
-	int len;
-	char *arr;
+	int		len;
+	char	*arr;
 
 	len = ft_strlen(s1);
 	arr = malloc(sizeof(char) * (len + 1));
-	if (arr == NULL)
-		return (NULL);
-	ft_strcpy(arr, s1);
+	if (!arr)
+		return (0);
+	ft_strcpy(s1, arr);
 	return (arr);
 }
 
-/*static char	make_change(unsigned int i, char l)
+static char	make_change(unsigned int i, char l)
 {
+	char	*ptr;
+
 	if (l == 'h' && i == 0)
-		return 'X';
+		return ('X');
 	return (l);
-}*/
+}
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*ptr;
+	int		i;
+	char	*ptr;
 
 	i = 0;
-	if (!s || !f)
-		ft_strdup("");
-	else if(!f)
-		ft_strdup(s);
+	if (!s)
+		return (0);
+	else if (!f)
+		return (ft_strdup(s));
 	ptr = ft_strdup(s);
 	if (!ptr)
-		return (ptr = NULL);
+		return (0);
 	while (s[i])
 	{
 		ptr[i] = (*f)(i, s[i]);
@@ -65,10 +68,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	}
 	return (ptr);
 }
-
-/*int main()
-{
-	int i = 0;
-	char arr[] = "hello";
-	printf("%s", ft_strmapi(arr, make_change));
-}*/

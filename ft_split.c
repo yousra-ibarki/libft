@@ -9,9 +9,10 @@
 /*   Updated: 2022/10/18 00:58:23 by yoibarki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	fill(char const *s, char **ss, char c)
+static char	fill(char const *s, char **ss, char c)
 {
 	int	i;
 	int	k;
@@ -39,7 +40,8 @@ char	fill(char const *s, char **ss, char c)
 	}
 	return (**ss);
 }
-int	countrow(char const *s, char ch)
+
+static int	countrow(char const *s, char ch)
 {
 	int	c;
 	int	i;
@@ -61,6 +63,28 @@ int	countrow(char const *s, char ch)
 	}
 	return (l);
 }
+
+static char	**backslash(char const *s, char **ss)
+{
+	ss = malloc(2 * sizeof(char *));
+	ss[0] = ft_strdup(s);
+	ss[1] = NULL;
+	return (ss);
+}
+
+void	freethearr(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -76,12 +100,7 @@ char	**ft_split(char const *s, char c)
 	if (s == NULL)
 		return (0);
 	else if (c == '\0')
-	{
-		ss = malloc(2 * sizeof(char *));
-		ss[0] = strdup(s);
-		ss[1] = NULL;
-		return (ss);
-	}
+		return (backslash(s, ss));
 	row = countrow(s, c);
 	ss = malloc(sizeof(char *) * (row + 1));
 	if (!ss)
@@ -93,28 +112,34 @@ char	**ft_split(char const *s, char c)
 		else
 		{
 			ss[j] = malloc(sizeof(char) * (column + 1));
-			if (!ss)
+			if (!ss[j])
+			{
+				freethearr(ss);
 				return (NULL);
+			}
 			column = 0;
 			j++;
 		}
 		i++;
 	}
 	ss[j] = malloc(sizeof(char) * (column + 1));
-	if (!ss)
+	if (!ss[j])
+	{
+		freethearr(ss);
 		return (NULL);
+	}
 	ss[j + 1] = 0;
 	fill(s, ss, c);
 	return (ss);
 }
-int	main(void)
-{
-	char arr[] = "hello guys it's such a wonderful day";
-	char c = ' ';
-	char **s = ft_split(arr, c);
-	// printf("%p", ft_split(arr, c));
-	for (int i = 0; i < 7; i++)
-	{
-		printf("%s\n", s[i]);
-	}
-}
+// int	main(void)
+// {
+// 	char arr[] = "hello guys it's such a wonderful day";
+// 	char c = ' ';
+// 	char s = ft_split(arr, c);
+// 	printf("%s\n", (char *)ft_split(0, ' '));
+// 	for (int i = 0; i < 7; i++)
+// 	{
+// 		printf("%s\n", s[i]);
+// 	}
+// }

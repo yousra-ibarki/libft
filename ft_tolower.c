@@ -11,17 +11,14 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_tolower(int c)
 {
-	unsigned char a;
+	unsigned char	a;
 
 	a = (unsigned char)c;
 	if (a > 64 && a < 91)
-	return (a += 32);
+		return (a += 32);
 	else
-	return (c);
-}
-int main()
-{
-	printf("%d", ft_tolower('B'));
+		return (c);
 }

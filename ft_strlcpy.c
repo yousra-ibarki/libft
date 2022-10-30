@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int		i;
+	size_t	i;
 	size_t	lens;
 
 	i = 0;
@@ -32,10 +32,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		return (lens);
 	}
 }
-/*int main()
-{
-	char d[] = "hello";
-	char s[] = "wd";
-	printf("%zu\n", ft_strlcpy(d, s, 3));
-	printf("%lu", strlcpy(d, s, 3));
-}*/

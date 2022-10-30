@@ -23,23 +23,14 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	rephay = (char *)haystack;
 	if (*needle == '\0')
 		return (rephay);
-		
 	while (i < len && haystack[i])
 	{
-		while (haystack[i + j] && needle[j]
-			&& haystack[i + j] == needle[j] && i + j < len)
+		while (haystack[i + j] && needle[j] && haystack[i + j] == needle[j] && i
+			+ j < len)
 			j++;
 		if (needle[j] == '\0')
 			return (rephay + i);
 		i++;
 	}
 	return (0);
-}
-int main()
-{
-    char h[]="home sweet home";
-    char n[]="sweet";
-    printf("%s", ft_strnstr(0, n, 0));
-
-    return 0;
 }

@@ -24,9 +24,3 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
-int main()
-{
-    char s[] = "\n";
-    int fd = open("hello", 777);
-    ft_putendl_fd(s, fd);
-}

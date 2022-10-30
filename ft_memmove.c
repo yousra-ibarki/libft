@@ -17,8 +17,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	char		*dest;
 	const char	*sr;
 
-	dest = (char *) dst;
-	sr = (const char *) src;
+	dest = (char *)dst;
+	sr = (const char *)src;
 	if (dst == src)
 	{
 		return (dst);
@@ -35,11 +35,3 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		*dest++ = *sr++;
 	return (dst);
 }
-/*int main()
-{
-	char s[] = "world";
-	printf("%s\n", (char *)ft_memmove(s+3, s, 3));
-	//printf("%s", (char *)memmove(s+2, s, 3));
-
-	return 0;
-}*/

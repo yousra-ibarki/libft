@@ -11,48 +11,45 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-char *ft_strcpy(const char *src, char *dst, size_t s, size_t len)
-{
-    size_t i = 0;
-    while (i < len)
-    {
-        dst[i] = src[s];
-        s++;
-        i++;
-    }
-    dst[s] = '\0';
-    return dst;
-}
-char *ft_substr(char const *s, unsigned int start, size_t len)
-{
-    size_t i = 0;
-    char *sub;
-    int len1;
 
-    if (!s)
-        return (NULL);
-    len1 = strlen(s);
-    if (len > len1)
-    {
-        sub = malloc(sizeof(char) * (len1 + 1));
-        if (!sub)
-            return NULL;
-        ft_strcpy(s, sub, start, len1);
-    }
-    else
-    {
-        if ((size_t)start > strlen(s))
-            return 0;
-        sub = malloc(sizeof(char) * (len + 1));
-        if (!sub)
-            return NULL;
-        ft_strcpy(s, sub, start, len);
-    }
-    return sub;
-}
-int main()
+static char	*ft_strcpy(const char *src, char *dst, size_t s, size_t len)
 {
-    char s[] = "hello";
-    unsigned int start = 1;
-    printf("%s\n", ft_substr(s, start, 30000));
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[s];
+		s++;
+		i++;
+	}
+	dst[s] = '\0';
+	return (dst);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+	size_t	len1;
+
+	if (!s)
+		return (NULL);
+	len1 = strlen(s);
+	if (len > len1)
+	{
+		sub = malloc(sizeof(char) * (len1 + 1));
+		if (!sub)
+			return (NULL);
+		ft_strcpy(s, sub, start, len1);
+	}
+	else
+	{
+		if ((size_t)start > strlen(s))
+			return (0);
+		sub = malloc(sizeof(char) * (len + 1));
+		if (!sub)
+			return (NULL);
+		ft_strcpy(s, sub, start, len);
+	}
+	return (sub);
 }

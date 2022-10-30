@@ -24,12 +24,3 @@ void	ft_bzero(void *s, size_t n)
 		n--;
 	}
 }
-/*int main()
-{
-	char s[] = "";
-	ft_bzero(s, 2);
-	printf("%s", s);
-	// bzero(s, 0);
-	// printf("%s", s);
-	return 0;
-}*/

@@ -49,6 +49,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*new;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (0);
 	new = malloc(sizeof(char) * (strlen(s1) + strlen(s2) + 1));
 	if (!new)
 		return (NULL);
@@ -56,9 +58,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strcat(new, s2);
 	return (new);
 }
-/*int main()
-{
-    char s[]= "hello";
-    char ss[]= "world";
-    printf("%s", ft_strjoin(s, ss));
-}*/

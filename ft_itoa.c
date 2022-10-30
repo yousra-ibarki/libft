@@ -6,7 +6,7 @@
 /*   By: yoibarki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:41:26 by yoibarki          #+#    #+#             */
-/*   Updated: 2022/10/24 11:08:04 by yoibarki         ###   ########.fr       */
+/*   Updated: 2022/10/28 03:26:13 by yoibarki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ static int	ft_count(int number)
 	return (c);
 }
 
+static char	*ifneg(char *ptr, int nbr, int len)
+{
+	ptr[0] = '-';
+	nbr = -nbr;
+	if (nbr >= 10)
+	{
+		while (--len > 0)
+		{
+			ptr[len] = (nbr % 10) + '0';
+			nbr /= 10;
+		}
+	}
+	return (ptr);
+}
+
 static char	*ft_tochar(char *ptr, int nbr, int len)
 {
 	long	i;
@@ -44,21 +59,7 @@ static char	*ft_tochar(char *ptr, int nbr, int len)
 	i = 0;
 	ptr[len] = '\0';
 	if (nbr < 0)
-	{
-		ptr[0] = '-';
-		nbr = -nbr;
-		if (nbr >= 10)
-		{
-			while (--len > 0)
-			{
-				ptr[len] = (nbr % 10) + '0';
-				nbr /= 10;
-			}
-		}
-		else
-			ptr[--len] = (nbr % 10) + '0';
-		return (ptr);
-	}
+		return (ifneg(ptr, nbr, len));
 	if (nbr >= 10)
 	{
 		while (--len >= 0)
@@ -86,8 +87,10 @@ char	*ft_itoa(int n)
 	ft_tochar(ptr, n, len);
 	return (ptr);
 }
-/*int main()
+/*int	main(void)
 {
-    int n = 0;
-    printf("%s", ft_itoa(n));
+	int	n;
+
+	n = -8774412;
+	printf("%s", ft_itoa(n));
 }*/
