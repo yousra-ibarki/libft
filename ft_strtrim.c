@@ -6,7 +6,7 @@
 /*   By: yoibarki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 00:48:06 by yoibarki          #+#    #+#             */
-/*   Updated: 2022/10/24 15:12:06 by yoibarki         ###   ########.fr       */
+/*   Updated: 2022/11/01 03:59:56 by yoibarki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*ft_mystrcpy(const char *src, char *dst, size_t s, size_t len)
 		s++;
 		i++;
 	}
-	dst[s] = '\0';
+	dst[i] = '\0';
 	return (dst);
 }
 
@@ -41,7 +41,7 @@ static int	ft_search(char const *s, char c)
 	return (0);
 }
 
-char	*if_setnull(char const *s1, char const *set)
+char	*if_setnull(char const *s1)
 {
 	char	*out;
 
@@ -62,29 +62,20 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1)
 		return (0);
 	else if (!set)
-	{
-		out = if_setnull(s1, set);
-		return (out);
-	}
+		return (if_setnull(s1));
 	end = ft_strlen(s1);
 	while (s1[start])
-		if (!(ft_search(set, s1[++start])))
+	{
+		if (!(ft_search(set, s1[start])))
 			break ;
+		start++;
+	}
 	while (s1[end - 1])
-		if (!(ft_search(set, s1[--end]) && start < end))
+		if (!(ft_search(set, s1[end]) && start < end--))
 			break ;
-	out = malloc(sizeof(char) * (end - start + 1));
+	out = malloc(sizeof(char) * ((end - start) + 2));
 	if (!out)
 		return (0);
-	ft_mystrcpy(s1, out, start, end - start + 1);
+	ft_mystrcpy(s1, out, start, ((end - start) + 1));
 	return (out);
 }
-/*int	main(void)
-{
-	char	s1[];
-	char	set[];
-
-	s1[] = "helloworld";
-	set[] = "hello";
-	printf("%s", ft_strtrim(s1, set));
-}*/

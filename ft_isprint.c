@@ -14,16 +14,8 @@
 
 int	ft_isprint(int c)
 {
-	unsigned char	a;
-
-	a = (unsigned char) c;
-	if (a >= 32 && a <= 126)
+	if (c >= 32 && c <= 126)
 		return (1);
 	else
 		return (0);
 }
-/*int main()
-{
-	printf("%d\n", ft_isprint(127));
-	printf("%d", isprint(127));
-}*/

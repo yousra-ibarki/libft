@@ -49,6 +49,8 @@ static char	*ifneg(char *ptr, int nbr, int len)
 			nbr /= 10;
 		}
 	}
+	else
+		ptr[1] = nbr + '0';
 	return (ptr);
 }
 
@@ -80,6 +82,8 @@ char	*ft_itoa(int n)
 	char	*ptr;
 
 	i = 0;
+	if (n == -2147483648)
+		return (ptr = ft_strdup("-2147483648"));
 	len = ft_count(n);
 	ptr = malloc((sizeof(char) * len + 1));
 	if (!ptr)
@@ -87,10 +91,3 @@ char	*ft_itoa(int n)
 	ft_tochar(ptr, n, len);
 	return (ptr);
 }
-/*int	main(void)
-{
-	int	n;
-
-	n = -8774412;
-	printf("%s", ft_itoa(n));
-}*/

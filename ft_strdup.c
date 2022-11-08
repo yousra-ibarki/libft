@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*ft_strrcpy(const char *src, char *dst)
+static char	*strrcpy(const char *src, char *dst)
 {
 	size_t	i;
 
@@ -32,16 +32,9 @@ char	*ft_strdup(const char *s1)
 	char	*arr;
 
 	len = ft_strlen(s1);
-	arr = (char *)malloc(len * sizeof(char));
+	arr = malloc(len * sizeof(char) + 1);
 	if (arr == NULL)
 		return (NULL);
-	ft_strrcpy(s1, arr);
+	arr = strrcpy(s1, arr);
 	return (arr);
 }
-/*int main()
-{
-    char arr[] = "halo";
-    printf("%s", ft_strdup(arr));
-
-    return 0;
-}*/

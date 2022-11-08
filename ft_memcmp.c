@@ -20,19 +20,12 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	int					result;
 
 	i = 0;
-	ss = (unsigned char *) s1;
-	sss = (unsigned char *) s2;
+	ss = (unsigned char *)s1;
+	sss = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (i < n && ss[i] && sss[i] && ss[i] == sss[i])
+	while (i < n - 1 && ss[i] == sss[i])
 		i++;
 	result = ss[i] - sss[i];
 	return (result);
 }
-/*int main()
-{
-	char s[] = " ";
-	char ss[] = " ";
-	printf("%d\n", ft_memcmp(s, ss, 1));
-	printf("%d", memcmp(s, ss, 1));
-}*/

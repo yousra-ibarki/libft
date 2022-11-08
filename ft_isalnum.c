@@ -16,14 +16,9 @@ int	ft_isalnum(int c)
 {
 	unsigned char	a;
 
-	a = (unsigned char) c;
+	a = (unsigned char)c;
 	if (ft_isalpha(a) || ft_isdigit(a))
 		return (1);
 	else
 		return (0);
 }
-
-/*int main()
-{
-	printf("%d\n", ft_isalnum('\0'));
-}*/

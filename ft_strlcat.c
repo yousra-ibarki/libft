@@ -15,26 +15,24 @@
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	j;
+	size_t	lend;
+	size_t	lens;
 
 	i = 0;
-	j = ft_strlen(dst);
+	lend = ft_strlen(dst);
+	lens = ft_strlen(src);
+	if (!dst)
+		return (0);
 	if (dstsize == 0)
-		return (ft_strlen(dst));
-	else if (dstsize < strlen(src))
-		return (ft_strlen(dst) + dstsize);
-	if (dstsize > strlen(src))
+		return (lens);
+	else if (lend >= dstsize)
+		return (lens + dstsize);
+	if (lens >= dstsize - lend)
 	{
-		while (src[i] && ft_strlen(dst) + i > dstsize)
-		{
-			dst[j] = src[i];
-			j++;
-			i++;
-		}
+		ft_memcpy(dst + lend, src, lens + 1);
+		dst[dstsize - 1] = 0;
 	}
-	if (j + i > dstsize && j < dstsize)
-		dst[j - 1] = '\0';
 	else
-		dst[j] = '\0';
-	return (ft_strlen(dst) + strlen(src));
+		ft_memcpy(dst + lend, src, lens + 1);
+	return (lend + lens);
 }

@@ -14,26 +14,20 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int				i;
+	unsigned char	ca;
 
+	ca = (unsigned char)c;
 	i = 0;
+	if (!c)
+		return ((char *)s + ft_strlen(s));
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] == ca)
 		{
-			return ((char *) s + i);
+			return ((char *)s + i);
 		}
 		i++;
 	}
-	if (s[i] == '\0')
-		return ((char *) s + i);
 	return (0);
 }
-/*int main()
-{
-	char tab[] = "hello";
-
-	printf("%s\n", ft_strchr(tab, 'e'));
-   printf("%s", strchr(tab, 'e'));
-	return 0;
-}*/

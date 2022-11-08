@@ -12,59 +12,48 @@
 
 #include "libft.h"
 
-static char	fill(char const *s, char **ss, char c)
+static int	countrow(char const *s, char c)
 {
+	int	count;
 	int	i;
-	int	k;
-	int	j;
 
+	count = 0;
 	i = 0;
-	k = 0;
-	j = 0;
-	while (s[k])
-	{
-		if (s[k] != c && s[k] != 0)
-		{
-			ss[i][j] = s[k];
-			j++;
-		}
-		else if (s[k - 1] != c && k > 0)
-		{
-			ss[i][j] = '\0';
-			i++;
-			j = 0;
-		}
-		else if (s[k + 1] == '\0' && s[k] != c)
-			ss[i][j] = '\0';
-		k++;
-	}
-	return (**ss);
-}
-
-static int	countrow(char const *s, char ch)
-{
-	int	c;
-	int	i;
-	int	l;
-
-	c = 0;
-	i = 0;
-	l = 0;
+	if (s[i] == '\0')
+		return (0);
+	while (s[i] == c)
+		i++;
 	while (s[i])
 	{
-		while (s[i] != ch && s[i])
-		{
-			c = 1;
-			i++;
-		}
-		while (s[i] == ch)
-			i++;
-		l += c;
+		if (s[i] == c && s[i + 1] != c)
+			count++;
+		i++;
 	}
-	return (l);
+	if (s[i] == '\0' && s[i - 1] != c)
+		return (count + 1);
+	else
+		return (count);
 }
 
-void	freethearr(char **str)
+static int	countchar(char const *s, char ch)
+{
+	int	i;
+
+	i = 0;
+	while (*s == ch)
+		s++;
+	while (*s)
+	{
+		if (*s != ch)
+			i++;
+		else
+			break ;
+		s++;
+	}
+	return (i);
+}
+
+char	**freethearr(char **str)
 {
 	int	i;
 
@@ -75,76 +64,31 @@ void	freethearr(char **str)
 		i++;
 	}
 	free(str);
-}
-
-char	**ft_malloc(char const *s, char **ss, char c)
-{
-	int	column;
-	int	j;
-	int	i;
-
-	j = 0;
-	i = 0;
-	column = 0;
-	while (s[i++] || s[i] != c)
-	{
-		column++;
-		if (s[i] == c)
-		{
-			ss[j] = malloc(sizeof(char) * (column + 1));
-			if (!ss[j])
-			{
-				freethearr(ss);
-				return (0);
-			}
-			column = 0;
-			j++;
-		}
-	}
-	ss[j] = malloc(sizeof(char) * (column + 1));
-	if (!ss[j])
-	{
-		freethearr(ss);
-		return (NULL);
-	}
-	ss[j + 1] = 0;
-	return (ss);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**ss;
 	int		row;
+	int		j;
 
-	row = 0;
-	if (s == NULL)
+	j = -1;
+	row = -1;
+	if (!s)
 		return (0);
-	else if (c == '\0')
-	{
-		ss = malloc(2 * sizeof(char *));
-		ss[0] = ft_strdup(s);
-		ss[1] = NULL;
-		return (ss);
-	}
-	row = countrow(s, c);
-	ss = malloc(sizeof(char *) * (row + 1));
+	ss = malloc(sizeof(char *) * (countrow(s, c) + 1));
 	if (!ss)
-		return (NULL);
-	if (ft_malloc(s, ss, c) == 0)
-		return (NULL);
-	else
-		ss = ft_malloc(s, ss, c);
-	fill(s, ss, c);
-	return (ss);
-}
-int	main(void)
-{
-	char arr[] = "hello guys it's such a wonderful day";
-	char c = ' ';
-	char **s = ft_split(arr, c);
-	//printf("%s\n", (char *)ft_split(0, ' '));
-	for (int i = 0; i < 7; i++)
+		return (0);
+	ss[countrow(s, c)] = 0;
+	while (s[++row])
 	{
-		printf("%s\n", s[i]);
+		if ((s[row] != c) && (row == 0 || (row > 0 && s[row - 1] == c)))
+		{
+			ss[++j] = ft_substr(s, row, countchar(s + row, c));
+			if (!ss[j])
+				return (freethearr(ss));
+		}
 	}
+	return (ss);
 }

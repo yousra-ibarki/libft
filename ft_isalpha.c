@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static	int	ft_islower(unsigned char a)
+static int	ft_islower(int a)
 {
 	if (a >= 'a' && a <= 'z')
 		return (1);
@@ -20,7 +20,7 @@ static	int	ft_islower(unsigned char a)
 		return (0);
 }
 
-static int	ft_isupper(unsigned char a)
+static int	ft_isupper(int a)
 {
 	if (a >= 'A' && a <= 'Z')
 		return (1);
@@ -30,18 +30,8 @@ static int	ft_isupper(unsigned char a)
 
 int	ft_isalpha(int c)
 {
-	unsigned char	a;
-
-	a = (unsigned char) c;
-	if (ft_isupper(a) || ft_islower(a))
+	if (ft_islower(c) || ft_isupper(c))
 		return (1);
 	else
 		return (0);
 }
-
-/*int main()
-{
-	unsigned char a = '[';
-	printf("%d", ft_isalpha('6'));
-	printf("%d", isalpha('6'));
-}*/

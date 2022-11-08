@@ -14,20 +14,20 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	lens;
+	int		lens;
+	char	ca;
 
-	lens = strlen(s);
-	while (s[lens] || s[lens] == '\0')
+	lens = ft_strlen(s);
+	ca = (unsigned char)c;
+	if (!s)
+		return (0);
+	if (!c)
+		return ((char *)s + lens);
+	while (lens >= 0)
 	{
-		if (s[lens] == c)
+		if (s[lens] == ca)
 			return ((char *)s + lens);
 		lens--;
 	}
 	return (0);
 }
-/*int main()
-{
-	char s[] = "helloee";
-	printf("%s\n", ft_strrchr(s, 'e'));
-	printf("%s", strrchr(s, 'e'));
-}*/

@@ -19,16 +19,16 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	i = 0;
 	lens = ft_strlen(src);
-	if (dstsize == 0)
-		return (lens);
-	else
+	if (!dst || !src)
+		return (0);
+	if (dstsize != 0)
 	{
-		while (i < dstsize - 1)
+		while (src[i] && i < (dstsize - 1))
 		{
 			dst[i] = src[i];
 			i++;
 		}
-		dst[i] = '\0';
-		return (lens);
+		dst[i] = 0;
 	}
+	return (lens);
 }

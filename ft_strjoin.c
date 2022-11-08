@@ -22,8 +22,7 @@ static char	*mystrcpy(char *ss, const char *s)
 		ss[i] = s[i];
 		i++;
 	}
-	ss[i] = ' ';
-	ss[i + 1] = '\0';
+	ss[i] = '\0';
 	return (ss);
 }
 
@@ -51,9 +50,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (0);
-	new = malloc(sizeof(char) * (strlen(s1) + strlen(s2) + 1));
+	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!new)
-		return (NULL);
+		return (0);
 	mystrcpy(new, s1);
 	ft_strcat(new, s2);
 	return (new);

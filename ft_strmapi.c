@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//, size_t s, size_t len
+
 static char	*ft_strcpy(const char *src, char *dst)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < strlen(src))
+	while (i < ft_strlen(src))
 	{
 		dst[i] = src[i];
 		i++;
@@ -26,7 +26,7 @@ static char	*ft_strcpy(const char *src, char *dst)
 	return (dst);
 }
 
-static char	*ft_strdup(const char *s1)
+static char	*ft_mystrdup(const char *s1)
 {
 	int		len;
 	char	*arr;
@@ -39,15 +39,6 @@ static char	*ft_strdup(const char *s1)
 	return (arr);
 }
 
-static char	make_change(unsigned int i, char l)
-{
-	char	*ptr;
-
-	if (l == 'h' && i == 0)
-		return ('X');
-	return (l);
-}
-
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int		i;
@@ -57,8 +48,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s)
 		return (0);
 	else if (!f)
-		return (ft_strdup(s));
-	ptr = ft_strdup(s);
+		return (ft_mystrdup(s));
+	ptr = ft_mystrdup(s);
 	if (!ptr)
 		return (0);
 	while (s[i])

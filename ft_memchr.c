@@ -6,7 +6,7 @@
 /*   By: yoibarki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:35:06 by yoibarki          #+#    #+#             */
-/*   Updated: 2022/10/24 11:11:33 by yoibarki         ###   ########.fr       */
+/*   Updated: 2022/11/01 04:05:19 by yoibarki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,18 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t				i;
-	const unsigned char	*ss;
+	size_t			i;
+	unsigned char	*ss;
+	unsigned char	ch;
 
 	i = 0;
-	ss = (unsigned char *) s;
+	ss = (unsigned char *)s;
+	ch = (unsigned char)c;
 	while (i < n)
 	{
-		if (ss[i] == c)
-			return ((unsigned char *)(s + i));
-		else if (ss[i] == '\0')
-			return (NULL);
+		if (ss[i] == ch)
+			return (ss + i);
 		i++;
 	}
 	return (0);
 }
-/*int main()
-{
-	char tab[] = "lelho";
-	printf("%s\n", ft_memchr(tab, 'h', 3));
-	printf("%s", memchr(tab, 'h', 3));
-	return 0;
-}*/
